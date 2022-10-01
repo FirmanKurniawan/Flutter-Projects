@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hacktoberfest/screen/helloworld.dart';
-import 'package:hacktoberfest/screen/travelui.dart';
+import 'package:hactoberfest2022/screen/helloworld.dart';
+import 'package:hactoberfest2022/screen/travelui.dart';
 
 void main() => runApp(MyApp());
 

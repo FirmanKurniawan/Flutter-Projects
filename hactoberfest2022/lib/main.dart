@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hactoberfest2022/screen/helloworld.dart';
+import 'package:hactoberfest2022/screen/ovo.dart';
 import 'package:hactoberfest2022/screen/travelui.dart';
 
 void main() => runApp(MyApp());
@@ -83,6 +84,13 @@ class ItemProject extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => TravelUI(),
+              ),
+            );
+          } else if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => OvoUI(),
               ),
             );
           }

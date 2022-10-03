@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hactoberfest2022/screen/helloworld.dart';
-import 'package:hactoberfest2022/screen/travelui.dart';
+
+import 'screen/screen.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'HacktoberFest',
       debugShowCheckedModeBanner: false,
       home: MyHomePage(),

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'screen.dart';
 
 class HelloWorld extends StatelessWidget {
   const HelloWorld({Key? key}) : super(key: key);

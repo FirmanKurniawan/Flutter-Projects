@@ -1,6 +1,4 @@
-import 'dart:ui';
-
-import 'package:flutter/material.dart';
+part of 'screen.dart';
 
 class TravelUI extends StatelessWidget {
   const TravelUI({Key? key}) : super(key: key);

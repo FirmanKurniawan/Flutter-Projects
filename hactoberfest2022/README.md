@@ -2,6 +2,9 @@
 
 A new Flutter project.
 
+name : Herry Prasetyo 
+github : github.com/herry88
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

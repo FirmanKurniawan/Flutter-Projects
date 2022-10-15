@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:hactoberfest2022/screen/helloworld.dart';
+import 'screen/screen.dart';
+//import 'package:hactoberfest2022/screen/helloworld.dart';
 import 'package:hactoberfest2022/screen/ovo.dart';
-import 'package:hactoberfest2022/screen/travelui.dart';
+//import 'package:hactoberfest2022/screen/travelui.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -18,7 +21,9 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
-  _MyHomePageState createState() => _MyHomePageState();
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -27,6 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
     "Travel UI",
     "Ovo UI"
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,8 +49,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
-          SliverPadding(
-            padding: const EdgeInsets.only(top: 10.0),
+          const SliverPadding(
+            padding: EdgeInsets.only(top: 10.0),
           ),
           SliverFixedExtentList(
             itemExtent: 60,
@@ -60,31 +66,29 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class ItemProject extends StatelessWidget {
-  int? index;
-  String? title;
+  final int? index;
+  final String? title;
 
-  ItemProject(String title, int index) {
-    this.title = title;
-    this.index = index;
-  }
+  const ItemProject(String this.title, int this.index, {super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(10, 3, 10, 3),
+      margin: const EdgeInsets.fromLTRB(10, 3, 10, 3),
       child: GestureDetector(
         onTap: () {
           if (index == 0) {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => HelloWorld(),
+                builder: (context) => const HelloWorld(),
               ),
             );
           } else if (index == 1) {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => TravelUI(),
+                builder: (context) => const TravelUI(),
               ),
             );
           } else if (index == 2) {

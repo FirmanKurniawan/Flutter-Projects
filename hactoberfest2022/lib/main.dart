@@ -8,7 +8,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'HacktoberFest',
       debugShowCheckedModeBanner: false,
       home: MyHomePage(),
@@ -25,6 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<String> hacktoberFest = [
     "Helo World",
     "Travel UI",
+    "Ovo UI"
   ];
   @override
   Widget build(BuildContext context) {

@@ -12,11 +12,11 @@ class OvoUI extends StatelessWidget {
     return Container(
       height: 60.0,
       width: deviceSize.width / 5,
-      padding: const EdgeInsets.all(2.0),
+      padding: EdgeInsets.all(2.0),
       child: Column(
-        children: [
+        children: <Widget>[
           Container(
-            padding: const EdgeInsets.only(bottom: 10.0),
+            padding: EdgeInsets.only(bottom: 10.0),
             child: Icon(
               icon,
               color: Colors.grey[100],
@@ -24,7 +24,9 @@ class OvoUI extends StatelessWidget {
           ),
           Text(
             text,
-            style: TextStyle(color: Colors.grey[100]),
+            style: TextStyle(
+              color: Colors.grey[100],
+            ),
           ),
         ],
       ),
@@ -35,12 +37,32 @@ class OvoUI extends StatelessWidget {
     required Size deviceSize,
   }) {
     return Row(
-      children: [
+      children: <Widget>[
         menuIcon(
           deviceSize: deviceSize,
-          text: "Home",
           icon: Icons.remove_circle_outline,
-        )
+          text: "Home",
+        ),
+        menuIcon(
+          deviceSize: deviceSize,
+          icon: Icons.work,
+          text: "Deals",
+        ),
+        menuIcon(
+          deviceSize: deviceSize,
+          icon: Icons.monetization_on,
+          text: "Finance",
+        ),
+        menuIcon(
+          deviceSize: deviceSize,
+          icon: Icons.account_balance_wallet,
+          text: "Wallet",
+        ),
+        menuIcon(
+          deviceSize: deviceSize,
+          icon: Icons.signal_cellular_4_bar,
+          text: "History",
+        ),
       ],
     );
   }
@@ -59,7 +81,7 @@ class OvoUI extends StatelessWidget {
           ),
           Container(
             padding: const EdgeInsets.all(8.0),
-            child: Icon(Icons.settings),
+            child: const Icon(Icons.settings),
           )
         ],
         bottom: PreferredSize(
@@ -69,7 +91,31 @@ class OvoUI extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               child: Column(
-                children: [topMenu(deviceSize: deviceSize)],
+                children: [
+                  // topMenu(
+                  //   deviceSize: deviceSize,
+                  // ),
+                  Container(
+                    height: 1.0,
+                    color: Colors.grey[500],
+                  ),
+                  // balanceInfo()
+                  Stack(
+                    children: [
+                      Container(
+                        height: 95.0,
+                        color: const Color(0xFF4d2a86),
+                      ),
+                      Positioned(
+                        child: Container(
+                          height: 45.0,
+                          width: MediaQuery.of(context).size.width / 5,
+                          color: Color(0xfffafafa),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
               ),
             ),
           ),

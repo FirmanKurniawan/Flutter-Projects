@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 //*for web scrapping
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as parser;
+import 'package:quotes_app/global_widgets/exit_popup.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,7 +21,11 @@ class _HomePageState extends State<HomePage> {
     'life',
     'humor',
     'reading',
-    'friendship'
+    'friendship',
+    'books',
+    'friends',
+    'truth',
+    'simile'
   ];
   List quotes = [];
   List authors = [];
@@ -54,155 +59,159 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          physics: const ScrollPhysics(),
-          child: Column(children: [
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: [
-                const Expanded(
-                    child: Divider(
-                  color: Colors.grey,
-                  indent: 10,
-                  endIndent: 10,
-                )),
-                Text(
-                  'QUOTES CATEGORY',
-                  style: textStyle(23, Colors.purple[900], FontWeight.bold),
-                ),
-                const Expanded(
-                    child: Divider(
-                  color: Colors.grey,
-                  indent: 10,
-                  endIndent: 10,
-                )),
-              ],
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            GridView.count(
-                crossAxisCount: 2,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                mainAxisSpacing: 25,
-                crossAxisSpacing: 15,
-                children: categories.map((category) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  QuotesPage(categoryName: category)));
-                    },
-                    child: Container(
-                        margin: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: Colors.white70,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.purple.withOpacity(0.4),
-                              spreadRadius: 3,
-                              blurRadius: 3,
-                              offset: const Offset(
-                                  0, 3), // changes position of shadow
-                            ),
-                          ],
-                        ),
-                        alignment: Alignment.center,
-                        height: 40,
-                        width: 100,
-                        child: Text(
-                          category.toUpperCase(),
-                          style: textStyle(
-                              20, Colors.purple[900], FontWeight.w700),
-                        )),
-                  );
-                }).toList()),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: [
-                const Expanded(
-                    child: Divider(
-                  color: Colors.grey,
-                  indent: 10,
-                  endIndent: 10,
-                )),
-                Text(
-                  'GENERAL QUOTES',
-                  style: textStyle(23, Colors.purple[900], FontWeight.bold),
-                ),
-                const Expanded(
-                    child: Divider(
-                  color: Colors.grey,
-                  indent: 10,
-                  endIndent: 10,
-                )),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            isData == false
-                ? Center(
-                    child: CircularProgressIndicator(color: Colors.purple[900]),
-                  )
-                : Column(children: [
-                    ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: quotes.length,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return Stack(children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Colors.purple[50],
-                                borderRadius: BorderRadius.circular(8),
+    return WillPopScope(
+      onWillPop: () => showExitPopup(context),
+      child: Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
+            physics: const ScrollPhysics(),
+            child: Column(children: [
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  const Expanded(
+                      child: Divider(
+                    color: Colors.grey,
+                    indent: 10,
+                    endIndent: 10,
+                  )),
+                  Text(
+                    'QUOTES CATEGORY',
+                    style: textStyle(23, Colors.purple[900], FontWeight.bold),
+                  ),
+                  const Expanded(
+                      child: Divider(
+                    color: Colors.grey,
+                    indent: 10,
+                    endIndent: 10,
+                  )),
+                ],
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              GridView.count(
+                  crossAxisCount: 2,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  mainAxisSpacing: 25,
+                  crossAxisSpacing: 15,
+                  children: categories.map((category) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    QuotesPage(categoryName: category)));
+                      },
+                      child: Container(
+                          margin: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.white70,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.purple.withOpacity(0.4),
+                                spreadRadius: 3,
+                                blurRadius: 3,
+                                offset: const Offset(
+                                    0, 3), // changes position of shadow
                               ),
-                              padding: const EdgeInsets.all(13),
-                              margin: const EdgeInsets.all(13),
-                              child: Card(
-                                color: Colors.white70,
-                                elevation: 10,
-                                child: Column(children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Text(
-                                      quotes[index],
-                                      style: textStyle(18, Colors.purple[700],
-                                          FontWeight.w500, 1.0),
+                            ],
+                          ),
+                          alignment: Alignment.center,
+                          height: 40,
+                          width: 100,
+                          child: Text(
+                            category.toUpperCase(),
+                            style: textStyle(
+                                20, Colors.purple[900], FontWeight.w700),
+                          )),
+                    );
+                  }).toList()),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  const Expanded(
+                      child: Divider(
+                    color: Colors.grey,
+                    indent: 10,
+                    endIndent: 10,
+                  )),
+                  Text(
+                    'GENERAL QUOTES',
+                    style: textStyle(23, Colors.purple[900], FontWeight.bold),
+                  ),
+                  const Expanded(
+                      child: Divider(
+                    color: Colors.grey,
+                    indent: 10,
+                    endIndent: 10,
+                  )),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              isData == false
+                  ? Center(
+                      child:
+                          CircularProgressIndicator(color: Colors.purple[900]),
+                    )
+                  : Column(children: [
+                      ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: quotes.length,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return Stack(children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.purple[50],
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                padding: const EdgeInsets.all(13),
+                                margin: const EdgeInsets.all(13),
+                                child: Card(
+                                  color: Colors.white70,
+                                  elevation: 10,
+                                  child: Column(children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Text(
+                                        quotes[index],
+                                        style: textStyle(18, Colors.purple[700],
+                                            FontWeight.w500, 1.0),
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Text(
-                                      "~ ${authors[index]}",
-                                      style: textStyle(15, Colors.purple[900],
-                                          FontWeight.bold, 1.0),
-                                    ),
-                                  )
-                                ]),
+                                    Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Text(
+                                        "~ ${authors[index]}",
+                                        style: textStyle(15, Colors.purple[900],
+                                            FontWeight.bold, 1.0),
+                                      ),
+                                    )
+                                  ]),
+                                ),
                               ),
-                            ),
-                            Positioned(
-                                left: 5,
-                                child: Image.asset(
-                                  'assets/pin.png',
-                                  height: 30,
-                                  width: 30,
-                                )),
-                          ]);
-                        })
-                  ]),
-          ]),
+                              Positioned(
+                                  left: 5,
+                                  child: Image.asset(
+                                    'assets/pin.png',
+                                    height: 30,
+                                    width: 30,
+                                  )),
+                            ]);
+                          })
+                    ]),
+            ]),
+          ),
         ),
       ),
     );

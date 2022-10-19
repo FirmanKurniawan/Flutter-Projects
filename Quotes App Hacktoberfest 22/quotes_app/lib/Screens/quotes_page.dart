@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../Utils/utils.dart';
 import 'package:http/http.dart' as http;
 //*for web scrapping

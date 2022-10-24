@@ -4,22 +4,17 @@ import 'package:tile_game/tileGame.dart';
 import 'package:tile_game/result.dart';
 import 'package:flutter/services.dart';
 
-
-void main(){
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
-    [
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown
-    ]
-  );
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: tileGame(),
+    home: const TileGame(),
     theme: ThemeData(fontFamily: 'Ubuntu'),
     routes: {
-      '/gameOver': (context) => popup(),
-      '/won': (context) => popupWon(),
+      '/gameOver': (context) => const Popup(),
+      '/won': (context) => const PopupWon(),
     },
   ));
 }
